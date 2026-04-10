@@ -10,8 +10,8 @@
         .dashboard-container { max-width: 1400px; margin: auto; }
         
         /* Header Info */
-        .header-meta { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px; padding: 0 5px; }
-        .update-stamp { font-size: 12px; color: #666; font-weight: 600; }
+        .header-meta { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; gap: 10px; }
+        .update-stamp { font-size: 13px; color: #666; font-weight: 600; background: #eee; padding: 4px 10px; border-radius: 4px; }
 
         .control-panel { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; display: flex; flex-direction: column; gap: 20px; }
         .row { display: flex; flex-wrap: wrap; gap: 15px; align-items: flex-start; }
@@ -31,7 +31,7 @@
         .team-pill { padding: 6px 12px; border-radius: 20px; font-size: 11px; cursor: pointer; border: 1px solid #ddd; background: #fff; transition: 0.2s; white-space: nowrap; }
         .team-pill.active { background: #003087; color: white; border-color: #003087; }
 
-        .chart-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; position: relative; overflow: hidden; }
+        .chart-card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; position: relative; }
         svg { width: 100%; height: auto; display: block; overflow: visible; }
 
         .line { fill: none; stroke-width: 2.5; opacity: 0.3; transition: opacity 0.2s; cursor: crosshair; }
@@ -51,7 +51,7 @@
 <div class="dashboard-container">
     <div class="header-meta">
         <h1 style="margin:0; font-size: 1.5rem; color: #003087;">MLB Analytics 2026</h1>
-        <div id="last-updated" class="update-stamp">Loading update status...</div>
+        <div id="last-updated" class="update-stamp">Connecting to repository...</div>
     </div>
 
     <div class="chart-card">
@@ -135,11 +135,10 @@ const statsConfig = {
     pitching: [{label:"Avg. Against",key:"avg",dir:"asc"},{label:"ERA",key:"era",dir:"asc"},{label:"Hits Allowed",key:"hits",dir:"asc"},{label:"HR Allowed",key:"homeRuns",dir:"asc"},{label:"K to Walk Ratio",key:"strikeoutWalkRatio",dir:"desc"},{label:"Ks per 9",key:"strikeoutsPer9Inn",dir:"desc"},{label:"Pitches Per Inning",key:"pitchesPerInning",dir:"asc"},{label:"Runs Allowed",key:"runs",dir:"asc"},{label:"Strike %",key:"strikePercentage",dir:"desc"},{label:"Walks per 9",key:"walksPer9Inn",dir:"asc"},{label:"WHIP",key:"whip",dir:"asc"},{label:"Win %",key:"winPercentage",dir:"desc"}]
 };
 
-// Padding adjustments: Swarm needs more 'left' for team names and 'right' for labels
-const margin = {top: 40, right: 180, bottom: 40, left: 60},
-      swarmMargin = {top: 40, right: 60, bottom: 60, left: 160},
-      width = 1350 - margin.left - margin.right,
-      height = 550 - margin.top - margin.bottom;
+const margin = {top: 40, right: 180, bottom: 40, left: 60};
+const swarmMargin = {top: 40, right: 180, bottom: 60, left: 180}; // Increased left margin for Beeswarm
+const width = 1350 - margin.left - margin.right;
+const height = 550 - margin.top - margin.bottom;
 
 let currentCategory = 'pitching', currentView = 'line', currentSort = 'name', currentStandingsStat = 'runDifferential';
 let activeTeams = new Set(), s2dData, dailyData, standingsData, teamColors, trendSvg, swarmSvg, standingsSvg, xTrend, yTrend, xSwarm, ySwarm, xStand, yStand;
@@ -147,13 +146,10 @@ let activeTeams = new Set(), s2dData, dailyData, standingsData, teamColors, tren
 const bisectDate = d3.bisector(d => new Date(d.date)).left;
 
 async function initApp() {
-    // Fetch last updated timestamp
     try {
         const log = await d3.json("./data/update_log.json");
         d3.select("#last-updated").text(`Last Sync: ${log.last_updated}`);
-    } catch(e) {
-        d3.select("#last-updated").text("Update log unavailable");
-    }
+    } catch(e) { d3.select("#last-updated").text("Live Sync Active"); }
 
     teamColors = await d3.json("./data/team_colors.json");
     standingsData = await d3.json("./data/standings.json");
@@ -161,8 +157,6 @@ async function initApp() {
     
     standingsSvg = d3.select("#standings-chart").append("svg").attr("viewBox", `0 0 ${width+margin.left+margin.right} ${height+margin.top+margin.bottom}`).append("g").attr("transform", `translate(${margin.left},${margin.top})`);
     trendSvg = d3.select("#s2d-chart").append("svg").attr("viewBox", `0 0 ${width+margin.left+margin.right} ${height+margin.top+margin.bottom}`).append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-    
-    // Variance chart gets dedicated spacing logic
     swarmSvg = d3.select("#swarm-chart").append("svg").attr("viewBox", `0 0 ${width+swarmMargin.left+swarmMargin.right} 900`).append("g").attr("transform", `translate(${swarmMargin.left},${swarmMargin.top})`);
     
     xTrend = d3.scaleTime().range([0, width]); yTrend = d3.scaleLinear().range([height, 0]);
@@ -208,7 +202,7 @@ function updateVisuals() {
     const fDaily = dailyData.filter(d => activeTeams.has(d.teamId.toString()));
     const fStand = standingsData.filter(d => activeTeams.has(d.teamId.toString())).sort((a,b) => d3.ascending(new Date(a.date), new Date(b.date)));
 
-    d3.select("#standings-title").text(`League Standings: (${currentStandingsStat === 'runDifferential' ? 'Run Diff' : 'Win %'})`);
+    d3.select("#standings-title").text(`League Standings: (${currentStandingsStat === 'runDifferential' ? 'Run Diff' : 'Win %'} - League)`);
     d3.select("#trend-title").text(`Season Performance Trends: (${statObj.label} - ${catDisplay})`);
     d3.select("#swarm-title").text(`Variance by Game: (${statObj.label} - ${catDisplay})`);
 

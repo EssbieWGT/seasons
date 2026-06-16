@@ -30,6 +30,12 @@
         .team-label { font-size: 11px; font-weight: bold; fill: #444; }
         .swarm-dot { stroke: #fff; stroke-width: 0.5; opacity: 0.7; cursor: pointer; }
         .swarm-dot:hover { stroke: #333; stroke-width: 1.5; opacity: 1; }
+        .box-whisker, .box-median, .box-mean { pointer-events: none; }
+        .box-rect { opacity: 0.18; cursor: help; }
+        .box-rect:hover { opacity: 0.3; }
+        .box-line { stroke-width: 2; }
+        .box-median { stroke-width: 3; }
+        .box-mean { stroke-width: 3; stroke-dasharray: 5,3; opacity: 0.75; }
         .mean-marker { stroke-width: 4; stroke-dasharray: 6,3; cursor: help; opacity: 0.6; }
         .mlb-mean-line { stroke: #000; stroke-width: 2; stroke-dasharray: 4,4; opacity: 0.8; pointer-events: none; }
         .mlb-mean-label { font-size: 10px; font-weight: bold; fill: #000; text-anchor: middle; }
@@ -52,6 +58,7 @@
             <div class="btn-row">
                 <button id="btn-rundiff" class="filter-btn active" onclick="setStandingsStat('runDifferential')">Run Diff</button>
                 <button id="btn-games500" class="filter-btn" onclick="setStandingsStat('gamesOver500')">Games .500</button>
+                <button id="btn-winpct" class="filter-btn" onclick="setStandingsStat('winPercentage')">Win %</button>
             </div>
         </div>
         <div id="standings-chart"></div>
@@ -153,7 +160,8 @@ async function initApp() {
             ...d, 
             wins: w,
             gamesPlayed: gp,
-            gamesOver500: (2 * w) - gp 
+            gamesOver500: (2 * w) - gp,
+            winPercentage: gp > 0 ? +(w / gp).toFixed(3) : 0 
         };
     });
 
@@ -220,7 +228,8 @@ function updateVisuals() {
     const fDaily = dailyData.filter(d => activeTeams.has(d.teamId.toString()));
     const fStand = standingsData.filter(d => activeTeams.has(d.teamId.toString())).sort((a,b) => d3.ascending(new Date(a.date), new Date(b.date)));
 
-    d3.select("#standings-title").text(`League Standings: (${currentStandingsStat === 'runDifferential' ? 'Run Diff' : 'Games .500'} - League)`);
+    const standingsLabel = currentStandingsStat === 'runDifferential' ? 'Run Diff' : currentStandingsStat === 'gamesOver500' ? 'Games .500' : 'Win %';
+    d3.select("#standings-title").text(`League Standings: (${standingsLabel} - League)`);
     d3.select("#trend-title").text(`Season Performance Trends: (${statObj.label} - ${catDisplay})`);
     d3.select("#swarm-title").text(`Variance by Game: (${statObj.label} - ${catDisplay})`);
 
@@ -345,45 +354,65 @@ function renderSwarm(data, stat, dir) {
         const m = d3.rollup(data, v => d3.mean(v, d => +d[stat] || 0), d => d.teamId);
         teamGroups.sort((a,b) => dir === 'desc' ? d3.descending(m.get(a[0]), m.get(b[0])) : d3.ascending(m.get(a[0]), m.get(b[0])));
     } else teamGroups.sort((a,b) => d3.ascending(teamColors[a[0]]?.name, teamColors[b[0]]?.name));
+
     const sHeight = Math.max(teamGroups.length * 60 + 100, 400);
+    const boxHalfHeight = 14;
     d3.select("#swarm-chart svg").attr("viewBox", `0 0 ${width + swarmMargin.left + swarmMargin.right} ${sHeight}`);
     xSwarm.domain(d3.extent(dailyData, d => +d[stat] || 0)).nice();
     ySwarm.domain(teamGroups.map(d => d[0])).range([0, sHeight - 100]);
+
     swarmSvg.selectAll(".mlb-mean-group").remove();
     const mlbGroup = swarmSvg.append("g").attr("class", "mlb-mean-group");
     mlbGroup.append("line").attr("class", "mlb-mean-line").attr("x1", xSwarm(mlbAvg)).attr("x2", xSwarm(mlbAvg)).attr("y1", -20).attr("y2", sHeight - 100);
     mlbGroup.append("text").attr("class", "mlb-mean-label").attr("x", xSwarm(mlbAvg)).attr("y", -30).text(`MLB AVG: ${mlbAvg.toFixed(3)}`);
+
     const rows = swarmSvg.selectAll(".swarm-row").data(teamGroups, d => d[0]);
     rows.exit().remove();
     const rowsEnter = rows.enter().append("g").attr("class", "swarm-row");
     rowsEnter.append("text").attr("class", "row-label").attr("x", -15).attr("y", 5).attr("text-anchor", "end").style("font-size", "12px").style("font-weight", "600");
-    rowsEnter.append("line").attr("class", "mean-marker").attr("y1", -22).attr("y2", 22);
+    rowsEnter.append("line").attr("class", "box-whisker box-line");
+    rowsEnter.append("line").attr("class", "box-cap-min box-line");
+    rowsEnter.append("line").attr("class", "box-cap-max box-line");
+    rowsEnter.append("rect").attr("class", "box-rect");
+    rowsEnter.append("line").attr("class", "box-median");
+    rowsEnter.append("line").attr("class", "box-mean");
+
     const mergedRows = rowsEnter.merge(rows);
     mergedRows.transition().duration(800).attr("transform", d => `translate(0,${ySwarm(d[0])})`);
     mergedRows.select(".row-label").text(d => teamColors[d[0]]?.name);
+
     mergedRows.each(function(d) {
-        const rowG = d3.select(this), teamValues = d[1].map(v => +v[stat] || 0), med = d3.median(teamValues), avg = d3.mean(teamValues);
-        const teamData = d[1].map(v => ({...v, x: xSwarm(+v[stat] || 0), y: 0}));
-        const sim = d3.forceSimulation(teamData).force("x", d3.forceX(d => d.x).strength(1)).force("y", d3.forceY(0)).force("collide", d3.forceCollide(4.5)).stop();
-        for (let i = 0; i < 120; ++i) sim.tick();
-        const dots = rowG.selectAll(".swarm-dot").data(teamData, v => v.date);
-        dots.exit().remove();
-        dots.enter().append("circle").attr("class", "swarm-dot").attr("r", 4).attr("fill", teamColors[d[0]]?.primary || "#ccc").merge(dots)
-            .on("mousemove", (ev, v) => showTooltipSwarm(ev, { team: teamColors[v.teamId].name, date: v.date, val: (+v[stat]).toFixed(3), mean: avg.toFixed(3), median: med.toFixed(3), min: d3.min(teamValues).toFixed(3), max: d3.max(teamValues).toFixed(3) }, stat, "game"))
+        const rowG = d3.select(this);
+        const teamValues = d[1].map(v => +v[stat] || 0).filter(v => !isNaN(v)).sort(d3.ascending);
+        if (!teamValues.length) return;
+        const min = d3.min(teamValues), q1 = d3.quantile(teamValues, 0.25), med = d3.median(teamValues), q3 = d3.quantile(teamValues, 0.75), max = d3.max(teamValues), avg = d3.mean(teamValues);
+        const color = teamColors[d[0]]?.primary || "#333";
+        const tooltipData = { team: teamColors[d[0]].name, mean: avg.toFixed(3), median: med.toFixed(3), min: min.toFixed(3), max: max.toFixed(3), q1: q1.toFixed(3), q3: q3.toFixed(3) };
+
+        rowG.selectAll(".swarm-dot").remove();
+        rowG.selectAll(".box-line, .box-median, .box-mean").attr("stroke", color);
+        rowG.select(".box-rect").attr("fill", color).attr("stroke", color)
+            .on("mousemove", (ev) => showTooltipBox(ev, tooltipData, stat))
             .on("mouseleave", () => d3.select("#tooltip").style("display", "none"))
-            .transition().duration(800).attr("cx", v => v.x).attr("cy", v => v.y);
-        rowG.select(".mean-marker").on("mousemove", (ev) => showTooltipSwarm(ev, { team: teamColors[d[0]].name, mean: avg.toFixed(3), median: med.toFixed(3), min: d3.min(teamValues).toFixed(3), max: d3.max(teamValues).toFixed(3) }, stat, "mean"))
-            .transition().duration(800).attr("x1", xSwarm(avg)).attr("x2", xSwarm(avg)).attr("stroke", teamColors[d[0]]?.primary || "#333");
+            .transition().duration(800)
+            .attr("x", xSwarm(q1)).attr("y", -boxHalfHeight).attr("width", Math.max(1, xSwarm(q3) - xSwarm(q1))).attr("height", boxHalfHeight * 2);
+        rowG.select(".box-whisker").transition().duration(800).attr("x1", xSwarm(min)).attr("x2", xSwarm(max)).attr("y1", 0).attr("y2", 0);
+        rowG.select(".box-cap-min").transition().duration(800).attr("x1", xSwarm(min)).attr("x2", xSwarm(min)).attr("y1", -boxHalfHeight).attr("y2", boxHalfHeight);
+        rowG.select(".box-cap-max").transition().duration(800).attr("x1", xSwarm(max)).attr("x2", xSwarm(max)).attr("y1", -boxHalfHeight).attr("y2", boxHalfHeight);
+        rowG.select(".box-median").transition().duration(800).attr("x1", xSwarm(med)).attr("x2", xSwarm(med)).attr("y1", -boxHalfHeight).attr("y2", boxHalfHeight);
+        rowG.select(".box-mean").transition().duration(800).attr("x1", xSwarm(avg)).attr("x2", xSwarm(avg)).attr("y1", -boxHalfHeight - 4).attr("y2", boxHalfHeight + 4);
     });
+
     swarmSvg.select(".x-axis-swarm").attr("transform", `translate(0,${sHeight - 90})`).call(d3.axisBottom(xSwarm));
 }
 
 function setSort(m) { currentSort = m; d3.selectAll("#sort-name-btn, #sort-mean-btn").classed("active", false); d3.select(m==='name'?'#sort-name-btn':'#sort-mean-btn').classed("active", true); updateVisuals(); }
 function setViewMode(v) { currentView = v; d3.selectAll("#btn-line, #btn-race").classed("active", false); d3.select(v==='line'?'#btn-line':'#btn-race').classed("active", true); updateVisuals(); }
-function setStandingsStat(s) { currentStandingsStat = s; d3.selectAll("#btn-rundiff, #btn-games500").classed("active", false); d3.select(s==='runDifferential'?'#btn-rundiff':'#btn-games500').classed("active", true); updateVisuals(); }
+function setStandingsStat(s) { currentStandingsStat = s; d3.selectAll("#btn-rundiff, #btn-games500, #btn-winpct").classed("active", false); d3.select(s==='runDifferential'?'#btn-rundiff':s==='gamesOver500'?'#btn-games500':'#btn-winpct').classed("active", true); updateVisuals(); }
 function applyGeo(geo, btn) { activeTeams.clear(); d3.selectAll("#geo-filters .filter-btn").classed("active", false); d3.select(btn).classed("active", true); Object.entries(teamColors).forEach(([id, info]) => { const fullDiv = `${info.league}-${info.division}`; if (geo === 'ALL' || info.league === geo || fullDiv === geo) activeTeams.add(id); }); d3.selectAll(".team-pill").each(function() { const id = this.id.split('-')[1]; d3.select(this).classed("active", activeTeams.has(id)); }); updateVisuals(); }
 function showDualTooltip(ev, current, latest, s, mlbAvg) { const tt = d3.select("#tooltip"); let content = `<b>${teamColors[current.teamId]?.name}</b><hr>Date: ${current.date}<br>Value: <b>${current[s]}</b><br>`; if (mlbAvg !== undefined) { content += `MLB Avg: <b>${mlbAvg.toFixed(3)}</b><br>`; } content += `<br>Season Latest: <b>${latest[s]}</b>`; tt.style("display", "block").style("left", (ev.pageX + 20) + "px").style("top", (ev.pageY - 20) + "px").html(content); }
 function showTooltipSwarm(ev, st, s, type) { const tt = d3.select("#tooltip"); let content = `<b>${st.team}</b><hr>`; if (type === "game") content += `Date: ${st.date}<br>Val: <b>${st.val}</b><br><br>`; else content += `<b>Season Aggregates</b><br>`; content += `Mean: <b>${st.mean}</b><br>Median: ${st.median}<br>Range: ${st.min} - ${st.max}`; tt.style("display", "block").style("left", (ev.pageX + 20) + "px").style("top", (ev.pageY - 20) + "px").html(content); }
+function showTooltipBox(ev, st, s) { const tt = d3.select("#tooltip"); const content = `<b>${st.team}</b><hr><b>Box Plot</b><br>Min: ${st.min}<br>Q1: ${st.q1}<br>Median: <b>${st.median}</b><br>Q3: ${st.q3}<br>Max: ${st.max}<br>Mean: <b>${st.mean}</b>`; tt.style("display", "block").style("left", (ev.pageX + 20) + "px").style("top", (ev.pageY - 20) + "px").html(content); }
 
 initApp();
 </script>

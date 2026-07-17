@@ -25460,6 +25460,25 @@
     "fielding": 0.981
   },
   {
+    "gamesPlayed": 98,
+    "gamesStarted": 98,
+    "assists": 799,
+    "putOuts": 2624,
+    "errors": 65,
+    "chances": 3488,
+    "rangeFactorPerGame": "35.00",
+    "rangeFactorPer9Inn": "35.00",
+    "innings": "9.0",
+    "games": 98,
+    "doublePlays": 53,
+    "triplePlays": 0,
+    "throwingErrors": 32,
+    "team": "New York Mets",
+    "teamId": 121,
+    "date": "2026-07-16",
+    "fielding": 0.981
+  },
+  {
     "gamesPlayed": 1,
     "gamesStarted": 1,
     "assists": 12,
@@ -45426,6 +45445,25 @@
     "team": "Philadelphia Phillies",
     "teamId": 143,
     "date": "2026-07-12",
+    "fielding": 0.986
+  },
+  {
+    "gamesPlayed": 98,
+    "gamesStarted": 98,
+    "assists": 803,
+    "putOuts": 2605,
+    "errors": 49,
+    "chances": 3457,
+    "rangeFactorPerGame": "35.00",
+    "rangeFactorPer9Inn": "35.00",
+    "innings": "9.0",
+    "games": 98,
+    "doublePlays": 55,
+    "triplePlays": 0,
+    "throwingErrors": 25,
+    "team": "Philadelphia Phillies",
+    "teamId": 143,
+    "date": "2026-07-16",
     "fielding": 0.986
   },
   {

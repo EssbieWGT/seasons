@@ -16080,6 +16080,18 @@
     "winPctStr": ".412"
   },
   {
+    "date": "2026-07-16",
+    "teamId": 121,
+    "team": "New York Mets",
+    "runs_scored": 402,
+    "runs_allowed": 464,
+    "wins": 41,
+    "gamesPlayed": 98,
+    "runDifferential": -62,
+    "winPercentage": 0.418,
+    "winPctStr": ".418"
+  },
+  {
     "date": "2026-03-27",
     "teamId": 133,
     "team": "Athletics",
@@ -28690,6 +28702,18 @@
     "runDifferential": -10,
     "winPercentage": 0.557,
     "winPctStr": ".557"
+  },
+  {
+    "date": "2026-07-16",
+    "teamId": 143,
+    "team": "Philadelphia Phillies",
+    "runs_scored": 425,
+    "runs_allowed": 438,
+    "wins": 54,
+    "gamesPlayed": 98,
+    "runDifferential": -13,
+    "winPercentage": 0.551,
+    "winPctStr": ".551"
   },
   {
     "date": "2026-03-27",

@@ -54452,5 +54452,43 @@
     "team": "Los Angeles Dodgers",
     "teamId": 119,
     "date": "2026-07-12"
+  },
+  {
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "assists": 8,
+    "putOuts": 27,
+    "errors": 1,
+    "chances": 36,
+    "fielding": ".972",
+    "rangeFactorPerGame": "35.00",
+    "rangeFactorPer9Inn": "35.00",
+    "innings": "9.0",
+    "games": 1,
+    "doublePlays": 0,
+    "triplePlays": 0,
+    "throwingErrors": 1,
+    "team": "New York Mets",
+    "teamId": 121,
+    "date": "2026-07-16"
+  },
+  {
+    "gamesPlayed": 1,
+    "gamesStarted": 1,
+    "assists": 8,
+    "putOuts": 27,
+    "errors": 1,
+    "chances": 36,
+    "fielding": ".972",
+    "rangeFactorPerGame": "35.00",
+    "rangeFactorPer9Inn": "35.00",
+    "innings": "9.0",
+    "games": 1,
+    "doublePlays": 3,
+    "triplePlays": 0,
+    "throwingErrors": 0,
+    "team": "Philadelphia Phillies",
+    "teamId": 143,
+    "date": "2026-07-16"
   }
 ]

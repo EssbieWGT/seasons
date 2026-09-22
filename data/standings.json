@@ -5568,6 +5568,18 @@
     "winPctStr": ".481"
   },
   {
+    "date": "2026-09-21",
+    "teamId": 110,
+    "team": "Baltimore Orioles",
+    "runs_scored": 697,
+    "runs_allowed": 727,
+    "wins": 76,
+    "gamesPlayed": 157,
+    "runDifferential": -30,
+    "winPercentage": 0.484,
+    "winPctStr": ".484"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 111,
     "team": "Boston Red Sox",
@@ -16620,6 +16632,18 @@
     "winPctStr": ".468"
   },
   {
+    "date": "2026-09-21",
+    "teamId": 116,
+    "team": "Detroit Tigers",
+    "runs_scored": 706,
+    "runs_allowed": 631,
+    "wins": 74,
+    "gamesPlayed": 157,
+    "runDifferential": 75,
+    "winPercentage": 0.471,
+    "winPctStr": ".471"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 117,
     "team": "Houston Astros",
@@ -24070,6 +24094,18 @@
     "runDifferential": 12,
     "winPercentage": 0.468,
     "winPctStr": ".468"
+  },
+  {
+    "date": "2026-09-21",
+    "teamId": 120,
+    "team": "Washington Nationals",
+    "runs_scored": 800,
+    "runs_allowed": 795,
+    "wins": 73,
+    "gamesPlayed": 157,
+    "runDifferential": 5,
+    "winPercentage": 0.465,
+    "winPctStr": ".465"
   },
   {
     "date": "2026-03-26",
@@ -35196,6 +35232,18 @@
     "winPctStr": ".406"
   },
   {
+    "date": "2026-09-21",
+    "teamId": 137,
+    "team": "San Francisco Giants",
+    "runs_scored": 654,
+    "runs_allowed": 740,
+    "wins": 64,
+    "gamesPlayed": 156,
+    "runDifferential": -86,
+    "winPercentage": 0.41,
+    "winPctStr": ".41"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 138,
     "team": "St. Louis Cardinals",
@@ -42624,6 +42672,18 @@
     "winPctStr": ".494"
   },
   {
+    "date": "2026-09-21",
+    "teamId": 141,
+    "team": "Toronto Blue Jays",
+    "runs_scored": 632,
+    "runs_allowed": 675,
+    "wins": 77,
+    "gamesPlayed": 157,
+    "runDifferential": -43,
+    "winPercentage": 0.49,
+    "winPctStr": ".49"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 142,
     "team": "Minnesota Twins",
@@ -44494,6 +44554,18 @@
     "runDifferential": -64,
     "winPercentage": 0.468,
     "winPctStr": ".468"
+  },
+  {
+    "date": "2026-09-21",
+    "teamId": 142,
+    "team": "Minnesota Twins",
+    "runs_scored": 714,
+    "runs_allowed": 781,
+    "wins": 73,
+    "gamesPlayed": 157,
+    "runDifferential": -67,
+    "winPercentage": 0.465,
+    "winPctStr": ".465"
   },
   {
     "date": "2026-03-26",

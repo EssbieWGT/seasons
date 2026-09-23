@@ -1872,6 +1872,18 @@
     "winPctStr": ".385"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 108,
+    "team": "Los Angeles Angels",
+    "runs_scored": 632,
+    "runs_allowed": 721,
+    "wins": 60,
+    "gamesPlayed": 157,
+    "runDifferential": -89,
+    "winPercentage": 0.382,
+    "winPctStr": ".382"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 109,
     "team": "Arizona Diamondbacks",
@@ -3730,6 +3742,18 @@
     "runDifferential": -1,
     "winPercentage": 0.526,
     "winPctStr": ".526"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 109,
+    "team": "Arizona Diamondbacks",
+    "runs_scored": 700,
+    "runs_allowed": 696,
+    "wins": 83,
+    "gamesPlayed": 157,
+    "runDifferential": 4,
+    "winPercentage": 0.529,
+    "winPctStr": ".529"
   },
   {
     "date": "2026-03-26",
@@ -7416,6 +7440,18 @@
     "winPctStr": ".538"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 111,
+    "team": "Boston Red Sox",
+    "runs_scored": 680,
+    "runs_allowed": 601,
+    "wins": 84,
+    "gamesPlayed": 157,
+    "runDifferential": 79,
+    "winPercentage": 0.535,
+    "winPctStr": ".535"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 112,
     "team": "Chicago Cubs",
@@ -9264,6 +9300,18 @@
     "winPctStr": ".558"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 112,
+    "team": "Chicago Cubs",
+    "runs_scored": 837,
+    "runs_allowed": 691,
+    "wins": 87,
+    "gamesPlayed": 157,
+    "runDifferential": 146,
+    "winPercentage": 0.554,
+    "winPctStr": ".554"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 113,
     "team": "Cincinnati Reds",
@@ -11100,6 +11148,18 @@
     "winPctStr": ".462"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 113,
+    "team": "Cincinnati Reds",
+    "runs_scored": 646,
+    "runs_allowed": 805,
+    "wins": 73,
+    "gamesPlayed": 157,
+    "runDifferential": -159,
+    "winPercentage": 0.465,
+    "winPctStr": ".465"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 114,
     "team": "Cleveland Guardians",
@@ -12922,6 +12982,18 @@
     "runDifferential": 2,
     "winPercentage": 0.519,
     "winPctStr": ".519"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 114,
+    "team": "Cleveland Guardians",
+    "runs_scored": 652,
+    "runs_allowed": 649,
+    "wins": 82,
+    "gamesPlayed": 157,
+    "runDifferential": 3,
+    "winPercentage": 0.522,
+    "winPctStr": ".522"
   },
   {
     "date": "2026-03-27",
@@ -14784,6 +14856,18 @@
     "winPctStr": ".365"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 115,
+    "team": "Colorado Rockies",
+    "runs_scored": 729,
+    "runs_allowed": 911,
+    "wins": 57,
+    "gamesPlayed": 157,
+    "runDifferential": -182,
+    "winPercentage": 0.363,
+    "winPctStr": ".363"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 116,
     "team": "Detroit Tigers",
@@ -16642,6 +16726,18 @@
     "runDifferential": 75,
     "winPercentage": 0.471,
     "winPctStr": ".471"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 116,
+    "team": "Detroit Tigers",
+    "runs_scored": 707,
+    "runs_allowed": 634,
+    "wins": 74,
+    "gamesPlayed": 158,
+    "runDifferential": 73,
+    "winPercentage": 0.468,
+    "winPctStr": ".468"
   },
   {
     "date": "2026-03-26",
@@ -18504,6 +18600,18 @@
     "winPctStr": ".494"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 117,
+    "team": "Houston Astros",
+    "runs_scored": 695,
+    "runs_allowed": 747,
+    "wins": 78,
+    "gamesPlayed": 157,
+    "runDifferential": -52,
+    "winPercentage": 0.497,
+    "winPctStr": ".497"
+  },
+  {
     "date": "2026-03-27",
     "teamId": 118,
     "team": "Kansas City Royals",
@@ -20364,6 +20472,18 @@
     "winPctStr": ".429"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 118,
+    "team": "Kansas City Royals",
+    "runs_scored": 667,
+    "runs_allowed": 772,
+    "wins": 67,
+    "gamesPlayed": 157,
+    "runDifferential": -105,
+    "winPercentage": 0.427,
+    "winPctStr": ".427"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 119,
     "team": "Los Angeles Dodgers",
@@ -22222,6 +22342,18 @@
     "runDifferential": 193,
     "winPercentage": 0.615,
     "winPctStr": ".615"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 119,
+    "team": "Los Angeles Dodgers",
+    "runs_scored": 787,
+    "runs_allowed": 587,
+    "wins": 97,
+    "gamesPlayed": 157,
+    "runDifferential": 200,
+    "winPercentage": 0.618,
+    "winPctStr": ".618"
   },
   {
     "date": "2026-03-26",
@@ -24108,6 +24240,18 @@
     "winPctStr": ".465"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 120,
+    "team": "Washington Nationals",
+    "runs_scored": 803,
+    "runs_allowed": 796,
+    "wins": 74,
+    "gamesPlayed": 158,
+    "runDifferential": 7,
+    "winPercentage": 0.468,
+    "winPctStr": ".468"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 121,
     "team": "New York Mets",
@@ -25942,6 +26086,18 @@
     "runDifferential": -41,
     "winPercentage": 0.455,
     "winPctStr": ".455"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 121,
+    "team": "New York Mets",
+    "runs_scored": 674,
+    "runs_allowed": 712,
+    "wins": 72,
+    "gamesPlayed": 157,
+    "runDifferential": -38,
+    "winPercentage": 0.459,
+    "winPctStr": ".459"
   },
   {
     "date": "2026-03-27",
@@ -27816,6 +27972,18 @@
     "winPctStr": ".391"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 133,
+    "team": "Athletics",
+    "runs_scored": 679,
+    "runs_allowed": 900,
+    "wins": 62,
+    "gamesPlayed": 157,
+    "runDifferential": -221,
+    "winPercentage": 0.395,
+    "winPctStr": ".395"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 134,
     "team": "Pittsburgh Pirates",
@@ -29650,6 +29818,18 @@
     "runDifferential": 29,
     "winPercentage": 0.506,
     "winPctStr": ".506"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 134,
+    "team": "Pittsburgh Pirates",
+    "runs_scored": 750,
+    "runs_allowed": 719,
+    "wins": 80,
+    "gamesPlayed": 157,
+    "runDifferential": 31,
+    "winPercentage": 0.51,
+    "winPctStr": ".51"
   },
   {
     "date": "2026-03-26",
@@ -31524,6 +31704,18 @@
     "winPctStr": ".558"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 135,
+    "team": "San Diego Padres",
+    "runs_scored": 690,
+    "runs_allowed": 656,
+    "wins": 87,
+    "gamesPlayed": 157,
+    "runDifferential": 34,
+    "winPercentage": 0.554,
+    "winPctStr": ".554"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 136,
     "team": "Seattle Mariners",
@@ -33396,6 +33588,18 @@
     "winPctStr": ".468"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 136,
+    "team": "Seattle Mariners",
+    "runs_scored": 634,
+    "runs_allowed": 697,
+    "wins": 73,
+    "gamesPlayed": 157,
+    "runDifferential": -63,
+    "winPercentage": 0.465,
+    "winPctStr": ".465"
+  },
+  {
     "date": "2026-03-25",
     "teamId": 137,
     "team": "San Francisco Giants",
@@ -35244,6 +35448,18 @@
     "winPctStr": ".41"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 137,
+    "team": "San Francisco Giants",
+    "runs_scored": 656,
+    "runs_allowed": 743,
+    "wins": 64,
+    "gamesPlayed": 157,
+    "runDifferential": -87,
+    "winPercentage": 0.408,
+    "winPctStr": ".408"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 138,
     "team": "St. Louis Cardinals",
@@ -37078,6 +37294,18 @@
     "runDifferential": -23,
     "winPercentage": 0.487,
     "winPctStr": ".487"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 138,
+    "team": "St. Louis Cardinals",
+    "runs_scored": 704,
+    "runs_allowed": 729,
+    "wins": 76,
+    "gamesPlayed": 157,
+    "runDifferential": -25,
+    "winPercentage": 0.484,
+    "winPctStr": ".484"
   },
   {
     "date": "2026-03-26",
@@ -38926,6 +39154,18 @@
     "runDifferential": 83,
     "winPercentage": 0.613,
     "winPctStr": ".613"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 139,
+    "team": "Tampa Bay Rays",
+    "runs_scored": 713,
+    "runs_allowed": 627,
+    "wins": 96,
+    "gamesPlayed": 157,
+    "runDifferential": 86,
+    "winPercentage": 0.611,
+    "winPctStr": ".611"
   },
   {
     "date": "2026-03-26",
@@ -40798,6 +41038,18 @@
     "runDifferential": -34,
     "winPercentage": 0.5,
     "winPctStr": ".5"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 140,
+    "team": "Texas Rangers",
+    "runs_scored": 656,
+    "runs_allowed": 693,
+    "wins": 78,
+    "gamesPlayed": 157,
+    "runDifferential": -37,
+    "winPercentage": 0.497,
+    "winPctStr": ".497"
   },
   {
     "date": "2026-03-27",
@@ -44568,6 +44820,18 @@
     "winPctStr": ".465"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 142,
+    "team": "Minnesota Twins",
+    "runs_scored": 717,
+    "runs_allowed": 783,
+    "wins": 74,
+    "gamesPlayed": 158,
+    "runDifferential": -66,
+    "winPercentage": 0.468,
+    "winPctStr": ".468"
+  },
+  {
     "date": "2026-03-26",
     "teamId": 143,
     "team": "Philadelphia Phillies",
@@ -46428,6 +46692,18 @@
     "winPctStr": ".551"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 143,
+    "team": "Philadelphia Phillies",
+    "runs_scored": 703,
+    "runs_allowed": 672,
+    "wins": 87,
+    "gamesPlayed": 157,
+    "runDifferential": 31,
+    "winPercentage": 0.554,
+    "winPctStr": ".554"
+  },
+  {
     "date": "2026-03-27",
     "teamId": 144,
     "team": "Atlanta Braves",
@@ -48274,6 +48550,18 @@
     "runDifferential": 125,
     "winPercentage": 0.594,
     "winPctStr": ".594"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 144,
+    "team": "Atlanta Braves",
+    "runs_scored": 720,
+    "runs_allowed": 599,
+    "wins": 92,
+    "gamesPlayed": 156,
+    "runDifferential": 121,
+    "winPercentage": 0.59,
+    "winPctStr": ".59"
   },
   {
     "date": "2026-03-26",
@@ -50148,6 +50436,18 @@
     "winPctStr": ".513"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 145,
+    "team": "Chicago White Sox",
+    "runs_scored": 747,
+    "runs_allowed": 702,
+    "wins": 81,
+    "gamesPlayed": 157,
+    "runDifferential": 45,
+    "winPercentage": 0.516,
+    "winPctStr": ".516"
+  },
+  {
     "date": "2026-03-27",
     "teamId": 146,
     "team": "Miami Marlins",
@@ -52020,6 +52320,18 @@
     "winPctStr": ".487"
   },
   {
+    "date": "2026-09-22",
+    "teamId": 146,
+    "team": "Miami Marlins",
+    "runs_scored": 700,
+    "runs_allowed": 697,
+    "wins": 77,
+    "gamesPlayed": 157,
+    "runDifferential": 3,
+    "winPercentage": 0.49,
+    "winPctStr": ".49"
+  },
+  {
     "date": "2026-03-25",
     "teamId": 147,
     "team": "New York Yankees",
@@ -53842,6 +54154,18 @@
     "runDifferential": 137,
     "winPercentage": 0.574,
     "winPctStr": ".574"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 147,
+    "team": "New York Yankees",
+    "runs_scored": 716,
+    "runs_allowed": 582,
+    "wins": 90,
+    "gamesPlayed": 157,
+    "runDifferential": 134,
+    "winPercentage": 0.573,
+    "winPctStr": ".573"
   },
   {
     "date": "2026-03-26",
@@ -55678,5 +56002,17 @@
     "runDifferential": 202,
     "winPercentage": 0.628,
     "winPctStr": ".628"
+  },
+  {
+    "date": "2026-09-22",
+    "teamId": 158,
+    "team": "Milwaukee Brewers",
+    "runs_scored": 806,
+    "runs_allowed": 606,
+    "wins": 98,
+    "gamesPlayed": 157,
+    "runDifferential": 200,
+    "winPercentage": 0.624,
+    "winPctStr": ".624"
   }
 ]
